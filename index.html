@@ -43,21 +43,21 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .hotspot{position:absolute;z-index:50;margin:0;padding:0;border:0;outline:0;background:transparent;appearance:none;-webkit-appearance:none;pointer-events:auto;touch-action:manipulation;cursor:pointer}
 
 /* Main screen hotspots */
-.hotspot-menu{left:3.2%;top:8.9%;width:8.8%;height:4.8%}
-.hotspot-qr{left:84.4%;top:8.8%;width:8.8%;height:4.8%}
-.hotspot-dni{left:45.6%;top:84.3%;width:46%;height:5.9%}
+.hotspot-menu{left:3.2%;top:12.9%;width:8.8%;height:4.8%}
+.hotspot-qr{left:84.4%;top:12.8%;width:8.8%;height:4.8%}
+.hotspot-dni{left:45.6%;top:88.3%;width:46%;height:5.9%}
 
 #screen-verify .screen-inner{margin-top:calc(-2vh + 1mm)}
 #screen-edad .screen-inner{margin-top:calc(-2vh - 3mm);background:#4E8EF8}
 #screen-edad{background:#4E8EF8}
 #screen-completo .screen-inner{margin-top:calc(-2vh - 3mm);background:#4E8EF8}
 #screen-completo{background:#4E8EF8}
-#screen-completo .qr-overlay{top:44%}
+#screen-completo .qr-overlay{top:48%}
 #screen-simple .screen-inner{margin-top:calc(-2vh + 2mm)}
 #screen-simple .bottom-bar{bottom:-18px}
 #screen-simple .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
 #screen-qrscan .screen-inner{margin-top:calc(-2vh + 5mm)}
-.simple-data{position:absolute;top:56%;left:0;right:0;bottom:0;background:#fff;padding:12px 24px 56px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;touch-action:pan-y;overscroll-behavior:contain;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+.simple-data{position:absolute;top:60%;left:0;right:0;bottom:0;background:#fff;padding:12px 24px 56px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;touch-action:pan-y;overscroll-behavior:contain;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 .simple-data-field{margin-bottom:10px}
 .simple-data-label{display:block;font-size:13px;font-weight:600;line-height:16px;letter-spacing:-0.08px;color:#3C3C43;margin-bottom:1px}
 .simple-data-value{display:block;font-size:21px;font-weight:400;line-height:25px;letter-spacing:-0.45px;color:#0A2D73;margin:0;font-stretch:normal}
@@ -73,21 +73,21 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .scanner-hint{position:absolute;top:calc(31% + 36% + 28px);left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,0.7);font-size:13px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;margin:0;width:80%}
 .scanner-logo{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:2;height:44px;opacity:0.8}
 
-.qr-overlay{position:absolute;left:8%;top:46%;width:84%;height:36.26%;overflow:hidden;z-index:60;transform:translateZ(0)}
+.qr-overlay{position:absolute;left:8%;top:50%;width:84%;height:36.26%;overflow:hidden;z-index:60;transform:translateZ(0)}
 .qr-overlay-img{width:100%;height:100%;object-fit:cover;position:absolute;left:0;top:0;will-change:transform}
 #screen-edad .hot-verify-back,
 #screen-completo .hot-verify-back{left:auto;right:2.817%}
 
 
 /* Verify screen hotspots (710x1536 design canvas) - RED for testing */
-.hot-verify-back{left:2.817%;top:7.617%;width:7.183%;height:3.516%}
-.hot-verify-edad{left:12.254%;top:47.721%;width:75.493%;height:12.174%}
-.hot-verify-simple{left:12.254%;top:61.393%;width:75.493%;height:17.253%}
-.hot-verify-completo{left:12.254%;top:80.143%;width:75.493%;height:12.76%}
+.hot-verify-back{left:2.817%;top:11.617%;width:7.183%;height:3.516%}
+.hot-verify-edad{left:12.254%;top:51.721%;width:75.493%;height:12.174%}
+.hot-verify-simple{left:12.254%;top:65.393%;width:75.493%;height:17.253%}
+.hot-verify-completo{left:12.254%;top:84.143%;width:75.493%;height:12.76%}
 
 /* Simple screen hotspot - visible red for positioning */
-.hot-simple-completo{left:5%;top:49%;width:90%;height:7%}
-.hot-qrscan-scan{left:5%;top:73%;width:90%;height:8%}
+.hot-simple-completo{left:5%;top:53%;width:90%;height:7%}
+.hot-qrscan-scan{left:5%;top:77%;width:90%;height:8%}
 
 /* ===== Menu ===== */
 .menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.35);z-index:100;opacity:0;pointer-events:none;transition:opacity .3s ease}
