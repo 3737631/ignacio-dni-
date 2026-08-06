@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>MiDNI - QR</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;width:100%;background:#fff;overflow:hidden}
+html{height:100%}
+body{position:fixed;inset:0;width:100%;height:100%;overscroll-behavior:none;-webkit-text-size-adjust:100%;font-family:-apple-system,Helvetica,Arial,sans-serif}
+.screen{position:fixed;top:0;left:0;width:100vw;height:calc(var(--viewport-height,100svh) + 6vh);overflow:hidden;background:#fff;transform:translateY(-6vh)}
+.screen-image{position:absolute;top:0;left:0;display:block;width:100vw;height:auto;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none;object-fit:unset;transform:translateZ(0);backface-visibility:hidden;filter:none;opacity:1}
+.hotspot{position:absolute;z-index:50;margin:0;padding:0;border:2px solid red;outline:0;background:rgba(255,0,0,0.15);appearance:none;-webkit-appearance:none;pointer-events:auto;touch-action:manipulation;cursor:pointer}
+#back{left:3.1%;top:6.9%;width:10%;height:4.8%}
+</style>
+</head>
+<body>
+<div class="screen">
+  <img src="https://3737631.github.io/dni/midni/photo_verify.jpg" class="screen-image" alt="" draggable="false" decoding="sync" fetchpriority="high">
+  <button id="back" class="hotspot" aria-label="Volver"></button>
+</div>
+<script>
+(function(){
+  function updateViewportHeight(){
+    var h=window.visualViewport?window.visualViewport.height:window.innerHeight;
+    document.documentElement.style.setProperty('--viewport-height',Math.round(h)+'px')
+  }
+  updateViewportHeight();
+  window.addEventListener('resize',updateViewportHeight);
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',updateViewportHeight);
+  document.getElementById('back').addEventListener('click',function(){window.location.href='./index.html'});
+  document.getElementById('back').addEventListener('touchstart',function(e){e.preventDefault();window.location.href='./index.html'},{passive:false});
+  document.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){e.preventDefault()},{passive:false});
+})();
+</script>
+</body>
+</html>
