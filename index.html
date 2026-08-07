@@ -51,8 +51,14 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 #screen-edad{background:#4E8EF8}
 #screen-completo{background:#4E8EF8}
 #screen-completo .qr-overlay{top:44%}
-#screen-simple .bottom-bar{bottom:-18px}
-#screen-simple .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
+#screen-simple .bottom-bar{bottom:0}
+#screen-simple .bottom-bar-inner{transform:translateY(0)}
+#screen-completo .bottom-bar{bottom:0}
+#screen-completo .bottom-bar-inner{transform:translateY(0)}
+#screen-edad .bottom-bar{bottom:0}
+#screen-edad .bottom-bar-inner{transform:translateY(0)}
+#screen-verify .bottom-bar{bottom:0}
+#screen-verify .bottom-bar-inner{transform:translateY(0)}
 .simple-data{position:absolute;top:56%;left:0;right:0;bottom:0;background:#fff;padding:12px 24px 56px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;touch-action:pan-y;overscroll-behavior:contain;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 .simple-data-field{margin-bottom:10px}
 .simple-data-label{display:block;font-size:13px;font-weight:600;line-height:16px;letter-spacing:-0.08px;color:#3C3C43;margin-bottom:1px}
@@ -116,7 +122,9 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .bottom-bar-inner{display:flex;align-items:center;justify-content:center;gap:4px;height:100%;transform:translateY(-1px)}
 #screen-verify .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
 #screen-verify .bottom-bar{bottom:-18px}
-#screen-completo .bottom-bar{bottom:2mm}
+#screen-edad .bottom-bar{bottom:0}
+#screen-edad .bottom-bar-inner{transform:translateY(0)}
+#screen-completo .bottom-bar{bottom:0}
 #screen-completo .bottom-bar-inner{transform:translateY(0)}
 .bottom-bar-text{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.92);white-space:nowrap}
 .bottom-bar-counter{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:20px;color:rgba(255,255,255,.92);width:24px;min-width:24px;max-width:24px;text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap;user-select:none}
@@ -146,12 +154,12 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
     <button class="hotspot hot-verify-edad" id="vedad" aria-label="DNI Edad"></button>
     <button class="hotspot hot-verify-simple" id="vsimple" aria-label="DNI Simple"></button>
     <button class="hotspot hot-verify-completo" id="vcompleto" aria-label="DNI Completo"></button>
-  </div>
-  <div class="bottom-bar">
-    <div class="bottom-bar-inner">
-      <span class="bottom-bar-text">QR válido</span>
-      <span class="bottom-bar-counter" id="counter-verify">60</span>
-      <span class="bottom-bar-text">segundos.</span>
+    <div class="bottom-bar">
+      <div class="bottom-bar-inner">
+        <span class="bottom-bar-text">QR válido</span>
+        <span class="bottom-bar-counter" id="counter-verify">60</span>
+        <span class="bottom-bar-text">segundos.</span>
+      </div>
     </div>
   </div>
 </div>
@@ -164,12 +172,12 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
     <div class="qr-overlay" id="edadQrOverlay">
       <img class="qr-overlay-img" id="edadQrImg" alt="" decoding="sync" fetchpriority="high">
     </div>
-  </div>
-  <div class="bottom-bar">
-    <div class="bottom-bar-inner">
-      <span class="bottom-bar-text">QR válido</span>
-      <span class="bottom-bar-counter" id="counter-edad">60</span>
-      <span class="bottom-bar-text">segundos.</span>
+    <div class="bottom-bar">
+      <div class="bottom-bar-inner">
+        <span class="bottom-bar-text">QR válido</span>
+        <span class="bottom-bar-counter" id="counter-edad">60</span>
+        <span class="bottom-bar-text">segundos.</span>
+      </div>
     </div>
   </div>
 </div>
@@ -182,12 +190,12 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
     <div class="qr-overlay" id="cqrOverlay">
       <img class="qr-overlay-img" id="cqrImg" alt="" decoding="sync" fetchpriority="high">
     </div>
-  </div>
-  <div class="bottom-bar">
-    <div class="bottom-bar-inner">
-      <span class="bottom-bar-text">QR válido</span>
-      <span class="bottom-bar-counter" id="counter-completo">60</span>
-      <span class="bottom-bar-text">segundos.</span>
+    <div class="bottom-bar">
+      <div class="bottom-bar-inner">
+        <span class="bottom-bar-text">QR válido</span>
+        <span class="bottom-bar-counter" id="counter-completo">60</span>
+        <span class="bottom-bar-text">segundos.</span>
+      </div>
     </div>
   </div>
 </div>
@@ -257,12 +265,12 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
         <span class="simple-data-value">CFQ171806</span>
       </div>
     </div>
-  </div>
-  <div class="bottom-bar">
-    <div class="bottom-bar-inner">
-      <span class="bottom-bar-text">Refrescar en v&aacute;lido</span>
-      <span class="bottom-bar-counter" id="counter-simple">60</span>
-      <span class="bottom-bar-text">segundos.</span>
+    <div class="bottom-bar">
+      <div class="bottom-bar-inner">
+        <span class="bottom-bar-text">Refrescar en v&aacute;lido</span>
+        <span class="bottom-bar-counter" id="counter-simple">60</span>
+        <span class="bottom-bar-text">segundos.</span>
+      </div>
     </div>
   </div>
 </div>
