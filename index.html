@@ -33,16 +33,14 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .screen.active{transform:translateX(0);opacity:1;pointer-events:auto}
 .screen.prev{transform:translateX(-25%);opacity:.8}
 
-/* App mode only: remove the -6vh Safari-chrome offset, content starts under status bar */
-@media (display-mode: standalone){
-  .screen{height:100%}
-  .screen-inner{margin-top:env(safe-area-inset-top)}
-  #screen-verify .screen-inner{margin-top:calc(1mm + env(safe-area-inset-top))}
-  #screen-edad .screen-inner{margin-top:calc(-3mm + env(safe-area-inset-top))}
-  #screen-completo .screen-inner{margin-top:calc(-3mm + env(safe-area-inset-top))}
-  #screen-simple .screen-inner{margin-top:calc(2mm + env(safe-area-inset-top))}
-  #screen-qrscan .screen-inner{margin-top:calc(5mm + env(safe-area-inset-top))}
-}
+/* App mode loader: set via JS (navigator.standalone), forces exact web layout */
+html.is-app .screen-inner{margin-top:env(safe-area-inset-top);height:100%}
+html.is-app #screen-verify .screen-inner{margin-top:calc(1mm + env(safe-area-inset-top))}
+html.is-app #screen-edad .screen-inner{margin-top:calc(-3mm + env(safe-area-inset-top))}
+html.is-app #screen-completo .screen-inner{margin-top:calc(-3mm + env(safe-area-inset-top))}
+html.is-app #screen-simple .screen-inner{margin-top:calc(2mm + env(safe-area-inset-top))}
+html.is-app #screen-qrscan .screen-inner{margin-top:calc(5mm + env(safe-area-inset-top))}
+html.is-app .screen{height:calc(100vh - env(safe-area-inset-top))}
 
 /* Wrapper inside screen that shifts image+hotspots up (matches original position) */
 .screen-inner{position:relative;margin-top:-6vh;left:0;width:100vw;height:calc(100% + 6vh);overflow:hidden}
@@ -350,6 +348,12 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
   updateViewportHeight();
   window.addEventListener('resize',updateViewportHeight);
   if(window.visualViewport)window.visualViewport.addEventListener('resize',updateViewportHeight);
+
+  /* ---- Detect installed app (standalone) to match Safari layout exactly ---- */
+  var isStandalone=window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;
+  if(navigator.standalone)isStandalone=true;
+  if(navigator.userAgent&&/iPad|iPhone|iPod/.test(navigator.userAgent)&&navigator.standalone===false&&(window.navigator||{}).standalone===true)isStandalone=true;
+  if(isStandalone){document.documentElement.className+=' is-app'}
 
   /* ---- Navigation (push/pop with slide transitions) ---- */
   var navStack=[];
