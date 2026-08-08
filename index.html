@@ -129,9 +129,15 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .splash-overlay.fade{opacity:0}
 
 /* ===== Installed app only (iOS home screen) =====
-   In Safari the -6vh shifts hide Safari's toolbar area. In a standalone app there
-   is no toolbar, so we anchor everything to the full visible screen so it looks
-   identical to the web and nothing stays white at the bottom. */
+   In Safari the -6vh shifts hide Safari's toolbar area and --viewport-height
+   (visualViewport) matches the visible area, so nothing is left over.
+
+   In a standalone app iOS does NOT include the bottom home-indicator zone
+   (env(safe-area-inset-bottom)) in visualViewport.height. That leaves ~34px of
+   white html/body visible below .screen. So in that mode we anchor .screen to
+   the full fixed body frame (100%) and make the blue .bottom-bar continue down
+   into the safe area (painted by its own background), while its text stays in
+   the safe zone. */
 @media (display-mode: standalone){
   .screen{height:100%}
   .dni-screen{height:100%}
@@ -142,10 +148,11 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
   #screen-simple .screen-inner,
   #screen-qrscan .screen-inner{margin-top:0}
   .screen-image{width:100%;height:100%;object-fit:cover}
-  .bottom-bar{bottom:0}
+  .bottom-bar{bottom:0;height:calc(58px + env(safe-area-inset-bottom))}
   #screen-verify .bottom-bar,
   #screen-simple .bottom-bar,
   #screen-completo .bottom-bar{bottom:0}
+  .bottom-bar-inner{height:calc(58px - env(safe-area-inset-bottom))}
   #screen-verify .bottom-bar-inner,
   #screen-simple .bottom-bar-inner,
   #screen-completo .bottom-bar-inner{transform:translateY(0)}
