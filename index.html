@@ -46,6 +46,11 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .hotspot-qr{left:84.4%;top:8.8%;width:8.8%;height:4.8%}
 .hotspot-dni{left:45.6%;top:84.3%;width:46%;height:5.9%}
 
+/* Foto DNI superpuesta en la pantalla principal (Ver mi DNI).
+   Ref. viewport 710x1536 -> x=27(3.80%), y=1087(70.77%), 262x290 (36.90%x18.88%).
+   No deforma: object-fit:cover recorta; object-position:center top conserva cabeza/cuello. */
+#screen-main .photo-overlay{position:absolute;left:3.8028%;top:70.7672%;width:36.9014%;height:18.8802%;object-fit:cover;object-position:center top;border-radius:20px;display:block;pointer-events:none;z-index:40}
+
 #screen-verify .screen-inner{margin-top:calc(-6vh + 1mm)}
 #screen-edad .screen-inner{margin-top:calc(-6vh - 3mm);background:#4E8EF8}
 #screen-edad{background:#4E8EF8}
@@ -139,6 +144,7 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
     <button class="hotspot hotspot-qr" id="openQr" aria-label="Abrir QR"></button>
     <button class="hotspot hotspot-dni" id="openDni" aria-label="Ver mi DNI"></button>
   </div>
+  <img src="./photo_ignacio.jpg" class="photo-overlay" alt="" draggable="false" decoding="async">
 </div>
 
 <!-- QR VERIFICATION SCREEN -->
