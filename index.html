@@ -29,15 +29,15 @@ html{position:fixed;inset:0}
 body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
 
 /* ===== Screens (screenshot-based) ===== */
-.screen{position:fixed;top:0;left:0;width:100vw;height:100dvh;overflow:hidden;background:#fff;z-index:1;transform:translateX(100%);opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+.screen{position:fixed;top:0;left:0;width:100vw;height:var(--viewport-height,100%);overflow:hidden;background:#fff;z-index:1;transform:translateX(100%);opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s ease}
 .screen.active{transform:translateX(0);opacity:1;pointer-events:auto}
 .screen.prev{transform:translateX(-25%);opacity:.8}
 
-/* Wrapper inside screen: image fills the full visible area (any mode) */
-.screen-inner{position:relative;top:0;left:0;width:100vw;height:100%}
+/* Wrapper inside screen that shifts image+hotspots up (matches original position) */
+.screen-inner{position:relative;margin-top:-6vh;left:0;width:100vw;height:calc(100% + 6vh);overflow:hidden}
 
-/* Screenshot image: covers the whole screen, edge to edge, no white strip */
-.screen-image{position:absolute;top:0;left:0;display:block;width:100%;height:100%;object-fit:cover;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none;transform:translateZ(0);backface-visibility:hidden;filter:contrast(1.045) brightness(0.985);image-rendering:-webkit-optimize-contrast;opacity:1}
+/* Screenshot image */
+.screen-image{position:absolute;top:0;left:0;display:block;width:100vw;height:auto;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none;object-fit:unset;transform:translateZ(0);backface-visibility:hidden;filter:contrast(1.045) brightness(0.985);image-rendering:-webkit-optimize-contrast;opacity:1}
 
 /* ===== Hotspots (shared) ===== */
 .hotspot{position:absolute;z-index:50;margin:0;padding:0;border:0;outline:0;background:transparent;appearance:none;-webkit-appearance:none;pointer-events:auto;touch-action:manipulation;cursor:pointer}
@@ -47,12 +47,16 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .hotspot-qr{left:84.4%;top:8.8%;width:8.8%;height:4.8%}
 .hotspot-dni{left:45.6%;top:84.3%;width:46%;height:5.9%}
 
-#screen-edad .screen-inner{background:#4E8EF8}
+#screen-verify .screen-inner{margin-top:calc(-6vh + 1mm)}
+#screen-edad .screen-inner{margin-top:calc(-6vh - 3mm);background:#4E8EF8}
 #screen-edad{background:#4E8EF8}
-#screen-completo .screen-inner{background:#4E8EF8}
+#screen-completo .screen-inner{margin-top:calc(-6vh - 3mm);background:#4E8EF8}
 #screen-completo{background:#4E8EF8}
 #screen-completo .qr-overlay{top:44%}
-#screen-simple .bottom-bar{bottom:0}
+#screen-simple .screen-inner{margin-top:calc(-6vh + 2mm)}
+#screen-simple .bottom-bar{bottom:-18px}
+#screen-simple .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
+#screen-qrscan .screen-inner{margin-top:calc(-6vh + 5mm)}
 .simple-data{position:absolute;top:56%;left:0;right:0;bottom:0;background:#fff;padding:12px 24px 56px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;touch-action:pan-y;overscroll-behavior:contain;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 .simple-data-field{margin-bottom:10px}
 .simple-data-label{display:block;font-size:13px;font-weight:600;line-height:16px;letter-spacing:-0.08px;color:#3C3C43;margin-bottom:1px}
@@ -93,7 +97,7 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .side-menu img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top;pointer-events:none;-webkit-user-drag:none;filter:contrast(1.045) brightness(0.985);image-rendering:-webkit-optimize-contrast}
 
 /* ===== DNI screens (native UI) ===== */
-.dni-screen{position:fixed;top:0;left:0;width:100vw;height:100dvh;overflow:hidden;background:#f2f2f7;z-index:1;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);transform:translateX(100%);opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+.dni-screen{position:fixed;top:0;left:0;width:100vw;height:var(--viewport-height,100%);overflow:hidden;background:#f2f2f7;z-index:1;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);transform:translateX(100%);opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s ease}
 .dni-screen.active{transform:translateX(0);opacity:1;pointer-events:auto}
 .dni-screen.prev{transform:translateX(-25%);opacity:.8}
 
@@ -113,14 +117,39 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .qr-label{margin-top:20px;font-size:18px;font-weight:600}
 .qr-timer{margin-top:8px;font-size:14px;color:#888}
 .bottom-bar{position:absolute;left:0;right:0;bottom:0;width:100%;height:58px;background:linear-gradient(90deg,#4388F5 0%,#5798FA 50%,#4388F5 100%);border-radius:0;overflow:hidden;z-index:9999;pointer-events:none}
-.bottom-bar-inner{display:flex;align-items:center;justify-content:center;gap:4px;height:100%;transform:translateY(0)}
-#screen-completo .bottom-bar{bottom:0}
+.bottom-bar-inner{display:flex;align-items:center;justify-content:center;gap:4px;height:100%;transform:translateY(-1px)}
+#screen-verify .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
+#screen-verify .bottom-bar{bottom:-18px}
+#screen-completo .bottom-bar{bottom:2mm}
 #screen-completo .bottom-bar-inner{transform:translateY(0)}
 .bottom-bar-text{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.92);white-space:nowrap}
 .bottom-bar-counter{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:20px;color:rgba(255,255,255,.92);width:24px;min-width:24px;max-width:24px;text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap;user-select:none}
 .splash-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none;opacity:1;transition:opacity .4s ease}
 .splash-overlay img{width:100%;height:100%;object-fit:cover}
 .splash-overlay.fade{opacity:0}
+
+/* ===== Installed app only (iOS home screen) =====
+   In Safari the -6vh shifts hide Safari's toolbar area. In a standalone app there
+   is no toolbar, so we anchor everything to the full visible screen so it looks
+   identical to the web and nothing stays white at the bottom. */
+@media (display-mode: standalone){
+  .screen{height:100vh}
+  .dni-screen{height:100vh}
+  .screen-inner{margin-top:0;height:100%}
+  #screen-verify .screen-inner,
+  #screen-edad .screen-inner,
+  #screen-completo .screen-inner,
+  #screen-simple .screen-inner,
+  #screen-qrscan .screen-inner{margin-top:0}
+  .screen-image{width:100%;height:100%;object-fit:cover}
+  .bottom-bar{bottom:0}
+  #screen-verify .bottom-bar,
+  #screen-simple .bottom-bar,
+  #screen-completo .bottom-bar{bottom:0}
+  #screen-verify .bottom-bar-inner,
+  #screen-simple .bottom-bar-inner,
+  #screen-completo .bottom-bar-inner{transform:translateY(0)}
+}
 </style>
 </head>
 <body>
@@ -324,6 +353,15 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 <script>
 (function(){
   "use strict";
+
+  /* ---- Viewport height (fix Safari bars) ---- */
+  function updateViewportHeight(){
+    var h=window.visualViewport?window.visualViewport.height:window.innerHeight;
+    document.documentElement.style.setProperty('--viewport-height',Math.round(h)+'px');
+  }
+  updateViewportHeight();
+  window.addEventListener('resize',updateViewportHeight);
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',updateViewportHeight);
 
   /* ---- Navigation (push/pop with slide transitions) ---- */
   var navStack=[];
