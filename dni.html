@@ -71,12 +71,7 @@
   <script>
 (function(){
   function updateViewportHeight(){
-    var h;
-    if(window.navigator.standalone&&window.screen){
-      h=window.screen.height/(window.devicePixelRatio||1);
-    }else{
-      h=window.visualViewport?window.visualViewport.height:window.innerHeight;
-    }
+    var h=window.visualViewport?window.visualViewport.height:window.innerHeight;
     document.documentElement.style.setProperty('--viewport-height',Math.round(h)+'px')
   }
   updateViewportHeight();
