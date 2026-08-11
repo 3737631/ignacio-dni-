@@ -63,8 +63,7 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 #screen-completo .qr-overlay{top:44%}
 #screen-simple .screen-inner{margin-top:calc(-6vh + 2mm)}
 #screen-simple .bottom-bar{bottom:-18px}
-.simple-photo{position:absolute;left:6.0563%;top:20.5%;width:35.7746%;height:24.5%;overflow:hidden;pointer-events:none;z-index:40;background:url('./photo_ignacio.jpg') center/cover no-repeat}
-.simple-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+
 #screen-simple .bottom-bar-inner{transform:translateY(calc(-3px - 2mm))}
 #screen-qrscan .screen-inner{margin-top:calc(-6vh + 5mm)}
 .simple-data{position:absolute;top:56%;left:0;right:0;bottom:0;background:#fff;padding:12px 24px 56px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",sans-serif;touch-action:pan-y;overscroll-behavior:contain;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
@@ -232,7 +231,6 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 <div class="screen" id="screen-simple">
   <div class="screen-inner">
     <img src="./photo_simple.jpg" class="screen-image" alt="" draggable="false" decoding="sync">
-    <div class="simple-photo"><img id="simplePhotoImg" src="./photo_ignacio.jpg" alt="" draggable="false" decoding="sync" loading="eager" fetchpriority="high"></div>
     <button class="hotspot hot-verify-back" id="sback" aria-label="Volver"></button>
     <button class="hotspot hot-simple-completo" id="sToCompleto" aria-label="DNI Completo"></button>
     <div class="simple-data">
@@ -529,8 +527,6 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
   document.getElementById('vcompleto').addEventListener('touchstart',function(e){e.preventDefault();openCompleto()},{passive:false});
   function openSimple(){
     if(counters['counter-verify']){clearInterval(counters['counter-verify']);counters['counter-verify']=null}
-    var _p=document.getElementById('simplePhotoImg');
-    if(_p&&_p.decode&&!document.hidden){try{_p.decode()}catch(_e){}}
     pushScreen('screen-simple');
     startCounter('counter-simple', function(){nextQr();startCounter('counter-verify')});
   }
@@ -592,14 +588,9 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 
   /* ---- Splash fade-out + prefetch/decode fotos (evita parpadeo) ---- */
   window.addEventListener('load',function(){
-    var imgs=['./photo_ignacio.jpg','./photo_simple.jpg'];
-    for(var i=0;i<imgs.length;i++){
-      var im=new Image();
-      im.src=imgs[i];
-      if(im.decode)im.decode();
-    }
-    var el=document.getElementById('simplePhotoImg');
-    if(el&&el.decode)el.decode();
+    var im=new Image();
+    im.src='./photo_simple.jpg';
+    if(im.decode)im.decode();
     setTimeout(function(){document.getElementById('splashOverlay').classList.add('fade')},30)
   });
 
