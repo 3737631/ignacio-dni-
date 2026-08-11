@@ -48,11 +48,9 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 .hotspot-dni{left:45.6%;top:84.3%;width:46%;height:5.9%}
 
 /* Foto DNI superpuesta en la pantalla principal (Ver mi DNI).
-   Ref. viewport 710x1536 -> left 3.7%, top 69.0%, width 36.9014%, height 21.0%.
-   El wrapper es mas alto que la imagen (ratio caja < ratio imagen): object-fit:cover
-   recorta soLO los lados; el borde superior (cabeza/cuello) y el inferior quedan visibles.
-   La foto ocupa mas de la web (misma X, mas alto). */
-#screen-main .photo-overlay{position:absolute;left:3.7%;top:69.0%;width:36.9014%;height:21.0%;border-radius:14px;overflow:hidden;pointer-events:none;z-index:40}
+   Ref. viewport 710x1536 -> left 3.7%, top 69.0%, width 36.9014%, height 21.7%
+   (el 0.7% extra de altura cubre con holgura el borde inferior del hueco impreso). */
+#screen-main .photo-overlay{position:absolute;left:3.7%;top:69.0%;width:36.9014%;height:21.7%;border-radius:14px;overflow:hidden;pointer-events:none;z-index:40}
 #screen-main .photo-overlay img{width:100%;height:118%;object-fit:cover;object-position:50% 50%;display:block}
 
 #screen-verify .screen-inner{margin-top:calc(-6vh + 1mm)}
