@@ -20,7 +20,7 @@
 <link rel="preload" as="image" href="./qr_edad_7.jpg">
 <link rel="preload" as="image" href="./qr_edad_8.jpg">
 <link rel="preload" as="image" href="./splash.jpg">
-<link rel="preload" as="image" href="./photo_simple.jpg">
+<link rel="preload" as="image" href="./photo_simple_v3.jpg">
 <link rel="preload" as="image" href="./photo_ignacio.jpg">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;margin:0;padding:0}
@@ -228,7 +228,7 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
 <!-- DNI SIMPLE SCREEN -->
 <div class="screen" id="screen-simple">
   <div class="screen-inner">
-    <img src="./photo_simple.jpg" class="screen-image" alt="" draggable="false" decoding="sync">
+    <img src="./photo_simple_v3.jpg" class="screen-image" alt="" draggable="false" decoding="sync">
     <button class="hotspot hot-verify-back" id="sback" aria-label="Volver"></button>
     <button class="hotspot hot-simple-completo" id="sToCompleto" aria-label="DNI Completo"></button>
     <div class="simple-data">
@@ -587,7 +587,7 @@ body{position:fixed;top:0;left:0;right:0;bottom:0;overscroll-behavior:none;-webk
   /* ---- Splash fade-out + prefetch/decode fotos (evita parpadeo) ---- */
   window.addEventListener('load',function(){
     var im=new Image();
-    im.src='./photo_simple.jpg';
+    im.src='./photo_simple_v3.jpg';
     if(im.decode)im.decode();
     setTimeout(function(){document.getElementById('splashOverlay').classList.add('fade')},30)
   });
